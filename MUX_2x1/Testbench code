@@ -22,11 +22,11 @@ module tb_mux_2x1;
     $monitor("  %b    %b  %b  |  %b", sel, a, b, y);
 
     
-    sel = 0; a = 0; b = 0; #10;  
     sel = 0; a = 1; b = 0; #10;  
+    sel = 0; a = 0; b = 1; #10;  
 
     
-    sel = 1; a = 0; b = 0; #10;  
+    sel = 1; a = 1; b = 0; #10;  
     sel = 1; a = 0; b = 1; #10;  
 
     $finish;
