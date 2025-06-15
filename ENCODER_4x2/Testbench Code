@@ -1,0 +1,47 @@
+module tb_decoder_2to4;
+
+  // Inputs
+  reg a0, a1,a2,a3;
+
+  // Outputs
+  wire d0, d1;
+
+  // Instantiate the Unit Under Test (UUT)
+  encoder_4x2_dataflow uut (
+    .a0(a0),
+    .a1(a1),
+    .a2(a2),
+    .a3(a3),
+    .d0(d0),
+    .d1(d1)
+  );
+
+  // Test sequence
+  initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars(1);
+    // Display header
+    $display("a3 a2 a1 a0 | d1 d0");
+    $display("-------------------");
+
+    // Test case 1: 0001
+    a3 = 0; a2 = 0; a1 = 0; a0 = 1;
+    #0001 $display(" %b  %b  %b  %b | %b  %b",a3 ,a2, a1, a0, d1, d0);
+
+    // Test case 2: 0010
+    a3 = 0; a2 = 0; a1 = 1; a0 = 0;
+    #0010 $display(" %b  %b  %b  %b | %b  %b",a3 ,a2, a1, a0, d1, d0);
+
+    // Test case 3: 0100
+    a3 = 0; a2 = 1; a1 = 0; a0 = 0;
+    #0100 $display(" %b  %b  %b  %b | %b  %b",a3 ,a2, a1, a0, d1, d0);
+
+    // Test case 4: 1000
+    a3 = 1; a2 = 0; a1 = 0; a0 = 0;
+    #1000 $display(" %b  %b  %b  %b | %b  %b",a3 ,a2, a1, a0, d1, d0);
+
+    // Finish simulation
+    $finish;
+  end
+
+endmodule
