@@ -1,0 +1,29 @@
+module tb_B2G;
+
+  reg [7:0] binary_value;
+  wire [7:0] gray_value;
+
+  B2G uut (
+    .binary_value(binary_value),
+    .gray_value(gray_value)
+  );
+
+  initial begin
+    $dumpfile("B2G.vcd");
+    $dumpvars(0, tb_B2G);
+
+    $display("  Binary     |    Gray");
+    $monitor("%b | %b", binary_value, gray_value);
+
+    binary_value = 8'b00000000; #10;
+    binary_value = 8'b00000001; #10;
+    binary_value = 8'b00000010; #10;
+    binary_value = 8'b00000111; #10;
+    binary_value = 8'b10101010; #10;
+    binary_value = 8'b11111111; #10;
+    binary_value = 8'b10000000; #10;
+
+    $finish;
+  end
+
+endmodule
