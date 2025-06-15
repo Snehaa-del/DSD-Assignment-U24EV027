@@ -1,0 +1,32 @@
+module decoder3X8_structural(
+  input wire x0,
+  input wire x1,
+  input wire x2,
+  output wire y0,
+  output wire y1,
+  output wire y2,
+  output wire y3,
+  output wire y4,
+  output wire y5,
+  output wire y6,
+  output wire y7
+);
+
+  wire x0_bar, x1_bar, x2_bar;
+
+  // Inverters
+  not(x0_bar, x0);
+  not(x1_bar, x1);
+  not(x2_bar, x2);
+
+  // AND gates for each output
+  and(y0, x2_bar, x1_bar, x0_bar); // 000
+  and(y1, x2_bar, x1_bar, x0);     // 001
+  and(y2, x2_bar, x1,     x0_bar); // 010
+  and(y3, x2_bar, x1,     x0);     // 011
+  and(y4, x2,     x1_bar, x0_bar); // 100
+  and(y5, x2,     x1_bar, x0);     // 101
+  and(y6, x2,     x1,     x0_bar); // 110
+  and(y7, x2,     x1,     x0);     // 111
+
+endmodule
