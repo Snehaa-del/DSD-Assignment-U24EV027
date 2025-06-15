@@ -1,0 +1,59 @@
+module decoder3X8_testbench;
+
+  // Inputs
+  reg x0, x1, x2;
+
+  // Outputs
+  wire y0, y1, y2, y3, y4, y5, y6, y7;
+
+  // Instantiate the Unit Under Test (UUT)
+  decoder3X8_structural uut (
+    .x0(x0),
+    .x1(x1),
+    .x2(x2),
+    .y0(y0),
+    .y1(y1),
+    .y2(y2),
+    .y3(y3),
+    .y4(y4),
+    .y5(y5),
+    .y6(y6),
+    .y7(y7)
+  );
+
+  initial begin
+    $dumpfile("decoder3X8.vcd");
+    $dumpvars(0, decoder3X8_testbench);
+
+    $display(" x2 x1 x0 | y7 y6 y5 y4 y3 y2 y1 y0");
+    $monitor("  %b  %b  %b  |  %b  %b  %b  %b  %b  %b  %b  %b",
+              x2, x1, x0, y7, y6, y5, y4, y3, y2, y1, y0);
+
+    // Test case 0: 000
+    x2 = 0; x1 = 0; x0 = 0; #10;
+
+    // Test case 1: 001
+    x0 = 1; #10;
+
+    // Test case 2: 010
+    x0 = 0; x1 = 1; #10;
+
+    // Test case 3: 011
+    x0 = 1; #10;
+
+    // Test case 4: 100
+    x0 = 0; x1 = 0; x2 = 1; #10;
+
+    // Test case 5: 101
+    x0 = 1; #10;
+
+    // Test case 6: 110
+    x0 = 0; x1 = 1; #10;
+
+    // Test case 7: 111
+    x0 = 1; #10;
+
+    $finish;
+  end
+
+endmodule
