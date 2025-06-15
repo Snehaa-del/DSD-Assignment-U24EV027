@@ -1,0 +1,15 @@
+module B2G (binary_value, gray_value);
+  input [7:0] binary_value;
+  output [7:0] gray_value;
+
+  genvar i;
+  generate
+    for(i=6; i>=0; i=i-1)
+    begin
+
+    assign gray_value[i] = binary_value[i+1] ^ (binary_value[i]);
+  end
+endgenerate
+
+assign gray_value[7] = binary_value[7];
+endmodule
