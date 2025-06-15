@@ -1,0 +1,8 @@
+module encoder_4x2_dataflow(a0,a1,a2,a3,d0,d1);
+  input a0,a1,a2,a3;
+  output d0,d1;
+  
+  assign d0 = a1 | a3;
+  assign d1 = a2 | a3;
+  
+endmodule
