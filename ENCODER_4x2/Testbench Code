@@ -1,4 +1,4 @@
-module tb_decoder_2to4;
+module tb_encoder_4x2;
 
   // Inputs
   reg a0, a1,a2,a3;
@@ -18,30 +18,34 @@ module tb_decoder_2to4;
 
   // Test sequence
   initial begin
-    $dumpfile("dump.vcd");
-    $dumpvars(1);
+    $dumpfile("encoder_4x2_dataflow.vcd");
+    $dumpvars(0,tb_encoder_4x2);
     // Display header
     $display("a3 a2 a1 a0 | d1 d0");
-    $display("-------------------");
+    $monitor("%b %b %b %b | %b %b",a3,a2,a1,a0,d1,d0);
+   
 
     // Test case 1: 0001
-    a3 = 0; a2 = 0; a1 = 0; a0 = 1;
-    #0001 $display(" %b  %b  %b  %b | %b  %b",a3 ,a2, a1, a0, d1, d0);
+    a3 = 0; a2 = 0; a1 = 0; a0 = 1; #10;
+   
 
     // Test case 2: 0010
-    a3 = 0; a2 = 0; a1 = 1; a0 = 0;
-    #0010 $display(" %b  %b  %b  %b | %b  %b",a3 ,a2, a1, a0, d1, d0);
+    a3 = 0; a2 = 0; a1 = 1; a0 = 0; #10;
+    
 
     // Test case 3: 0100
-    a3 = 0; a2 = 1; a1 = 0; a0 = 0;
-    #0100 $display(" %b  %b  %b  %b | %b  %b",a3 ,a2, a1, a0, d1, d0);
+    a3 = 0; a2 = 1; a1 = 0; a0 = 0 ;#10;
+   
 
     // Test case 4: 1000
-    a3 = 1; a2 = 0; a1 = 0; a0 = 0;
-    #1000 $display(" %b  %b  %b  %b | %b  %b",a3 ,a2, a1, a0, d1, d0);
+    a3 = 1; a2 = 0; a1 = 0; a0 = 0; #10;
+   
 
     // Finish simulation
     $finish;
   end
 
 endmodule
+  
+
+   
