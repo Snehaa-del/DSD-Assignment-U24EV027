@@ -1,0 +1,14 @@
+module full_adder (
+    input a,
+    input b,
+    input cin,
+    output reg sum,
+    output reg cout
+);
+
+always @ (a or b or cin)
+begin
+    {cout, sum} = a + b + cin;
+end
+
+endmodule
