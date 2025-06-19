@@ -1,0 +1,25 @@
+module tb_multiplier_4bit;
+
+  reg [3:0] a, b;
+  wire [7:0] p;
+
+  multiplier_4bit uut (a, b, p);
+
+  initial begin
+    $dumpfile("multiplier_4bit.vcd");
+    $dumpvars(0, tb_multiplier_4bit);
+    
+    a = 4'b0000; b = 4'b0000;
+    #10;
+    a = 4'b0001; b = 4'b0010;
+    #10;
+    a = 4'b0011; b = 4'b0101;
+    #10;
+    a = 4'b1111; b = 4'b1111;
+    #10;
+    a = 4'b1010; b = 4'b0101;
+    #10;
+    $finish;
+  end
+
+endmodule
